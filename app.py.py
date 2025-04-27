@@ -8,7 +8,7 @@ vectorizer = joblib.load("vectorizer.pkl")
 
 # Web UI - Title and Description with improved styling
 st.markdown("<h1 style='text-align: center; color: #1E88E5;'>📰 Fake News Detection System</h1>", unsafe_allow_html=True)
-st.write("Enter the news article text to check if it's *Real* or *Fake*.")
+st.write("Enter the news article text to check if it's **Real** or **Fake**.")
 
 # Text input from the user
 user_input = st.text_area("Enter News Text:")
@@ -39,9 +39,9 @@ if st.button("Predict"):
 
             # Show the result with confidence
             if prediction[0] == 1:
-                st.success(f"✅ *Real News* with {prediction_prob[0][1]*100:.2f}% confidence.")
+                st.success(f"✅ **Real News** with {prediction_prob[0][1]*100:.2f}% confidence.")
             else:
-                st.error(f"❌ *Fake News* with {prediction_prob[0][0]*100:.2f}% confidence.")
+                st.error(f"❌ **Fake News** with {prediction_prob[0][0]*100:.2f}% confidence.")
     else:
         st.warning("Please enter some text!")
 
@@ -63,11 +63,11 @@ if st.button("Predict All"):
                     user_input_vec = vectorizer.transform([news])
                     prediction = model.predict(user_input_vec)
                     prediction_prob = model.predict_proba(user_input_vec)
-                    st.write(f"*News*: {news}")
+                    st.write(f"**News**: {news}")
                     if prediction[0] == 1:
-                        st.success(f"✅ *Real News* with {prediction_prob[0][1]*100:.2f}% confidence.")
+                        st.success(f"✅ **Real News** with {prediction_prob[0][1]*100:.2f}% confidence.")
                     else:
-                        st.error(f"❌ *Fake News* with {prediction_prob[0][0]*100:.2f}% confidence.")
+                        st.error(f"❌ **Fake News** with {prediction_prob[0][0]*100:.2f}% confidence.")
             else:
                 st.warning("Please enter valid news text!")
     else:
